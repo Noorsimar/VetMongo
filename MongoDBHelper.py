@@ -3,8 +3,7 @@ from tabulate import tabulate
 
 class MongoDBHelper:
     def __init__(self, collections="customer"):
-        #uri = "mongodb+srv://<user>:<password>@cluster0.zlyso5w.mongodb.net/?retryWrites=true&w=majority"
-        uri = "mongodb+srv://noor:noor@cluster0.zlyso5w.mongodb.net/?retryWrites=true&w=majority"
+        #uri = "mongodb+srv://<>:<>@cluster0.zlyso5w.mongodb.net/?retryWrites=true&w=majority"
 
         client = pymongo.MongoClient(uri)
         self.db = client['groundwork']
@@ -32,7 +31,8 @@ class MongoDBHelper:
         # for document in documents:
         #     print(document)
         #print(tabulate(documents, headers="keys", tablefmt="grid"))
-        return documents
+        return list(documents)
+
     def update(self, document, query):
         update_query = {'$set': document} # $set is operator in mongodb
         result = self.collection.update_one(query, update_query)
